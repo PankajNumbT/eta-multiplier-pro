@@ -1,0 +1,36 @@
+services:
+  web:
+    build: .
+    command: streamlit run app.py --server.address=0.0.0.0 --server.port=8501
+    ports:
+      - "8501:8501"
+    environment:
+      RAMANUJAN_PUBLIC_WEB: "1"
+      RAMANUJAN_CACHE_DIR: /tmp/ramanujan_lab_cache
+      RAMANUJAN_DATA_DIR: /data/ramanujan_lab
+      RAMANUJAN_API_URL: http://api:8000
+      SAGE_BRIDGE_URL: http://sage:8001
+    volumes:
+      - ramanujan-data:/data/ramanujan_lab
+    depends_on:
+      - api
+
+  api:
+    build: .
+    command: uvicorn api_service:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+
+  # Optional. This requires a SageMath-capable image and is intentionally
+  # disabled by default because the image is large.
+  # sage:
+  #   image: sagemath/sagemath:latest
+  #   working_dir: /app
+  #   volumes:
+  #     - .:/app
+  #   command: bash -lc "sage -pip install fastapi uvicorn pydantic && sage -python -m uvicorn sage_bridge:app --host 0.0.0.0 --port 8001"
+  #   ports:
+  #     - "8001:8001"
+
+volumes:
+  ramanujan-data:

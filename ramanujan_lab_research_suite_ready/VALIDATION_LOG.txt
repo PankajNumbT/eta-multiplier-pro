@@ -1,0 +1,38 @@
+Ramanujan Laboratory Pro - Research Suite 5.0
+Validation summary
+
+Syntax and web
+- app.py: Python compilation passed.
+- api_core.py, api_service.py, sage_bridge.py: Python compilation passed.
+- Streamlit live health endpoint returned: ok.
+- All 20 Streamlit navigation routes initialized without an exception under Streamlit AppTest.
+
+Existing mathematics
+- 22/22 stored 2-, 3-, and 5-dissection identities passed independent coefficient comparison through q^80.
+- 1/f_1 produced 1,1,2,3,5,7,...
+- The composite expression f_1^2/f_2 - f_1^6/f_2^3 produced an exact 3-dissection.
+- Its 3-dissection component complexities were 3, 2, and 1 symbolic terms.
+- Iterated 2-extraction for a(8n+7) produced the exact zero component.
+- Coefficient components for p=7 were generated successfully.
+
+New research modules
+- Sturm certificate test for f_1^2 f_11^2 against itself at level 11 passed with bound 2.
+- Exact relation finder recovered [1,-1,2] for the stored f_1^2 2-dissection.
+- U_p and integral T_p coefficient tests passed.
+- Rank and crank second moments were generated through n=12.
+- Share-state encoding and decoding round-tripped exactly.
+- Personal-vault database initialization, hashing functions, and schema compiled successfully.
+
+Reports and manual
+- The in-app manual contains 10 selectable sections and more than 3,300 words.
+- The standalone manual compiled with pdflatex to a 19-page PDF.
+- The PDF was rendered to PNG for visual inspection; representative early, middle, and final pages showed wrapped text, readable formulas, and no clipping.
+
+REST API
+- GET /health passed.
+- POST /expand returned partition coefficients for 1/f_1.
+- POST /dissect returned seven components for p=7.
+- POST /congruence/check verified p(5n+4) divisible by 5 through n=50.
+
+Deployment package
+- Dockerfile, Docker Compose, Render configuration, Streamlit theme, requirements, optional system packages, start scripts, README, checklist, and manual are included.
